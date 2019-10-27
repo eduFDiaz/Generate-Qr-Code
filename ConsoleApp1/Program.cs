@@ -9,6 +9,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello world");
             Url generator = new Url("https://www.codingindfw.com");
             string payload = generator.ToString();
 
