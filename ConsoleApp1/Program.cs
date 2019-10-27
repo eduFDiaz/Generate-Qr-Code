@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using QRCoder;
+using System;
+using static QRCoder.PayloadGenerator;
 
 namespace ConsoleApp1
 {
@@ -6,7 +9,14 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Url generator = new Url("https://www.codingindfw.com");
+            string payload = generator.ToString();
+
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            var qrCodeAsBitmap = qrCode.GetGraphic(20);
+            qrCodeAsBitmap.Save("./qrcode.bmp");
         }
     }
 }
